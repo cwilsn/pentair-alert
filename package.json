@@ -1,0 +1,27 @@
+{
+  "name": "screenlogic-monitor",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Read-only pool temperature dashboard and Pushover alert monitor for Pentair ScreenLogic",
+  "type": "module",
+  "scripts": {
+    "diagnostics": "node --import tsx src/diagnostics.ts",
+    "start": "node dist/server.js",
+    "dev": "node --import tsx src/server.ts",
+    "pushover:test": "node --import tsx src/test-pushover.ts",
+    "test": "node --import tsx --test test/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "node-screenlogic": "2.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

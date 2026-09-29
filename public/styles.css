@@ -1,0 +1,50 @@
+:root{color-scheme:dark;--ink:#eaf7f6;--muted:#9eb5bf;--navy:#081c2b;--teal:#79dbd2;--lime:#d8f19c;font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-synthesis:none}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(ellipse 60% 45% at 88% 6%,#1b4150 0%,transparent 65%),radial-gradient(ellipse 45% 55% at -8% 90%,#153a47 0%,transparent 76%),var(--navy);color:var(--ink)}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.13;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.24'/%3E%3C/svg%3E")}
+.page-shell{max-width:1180px;min-height:100vh;margin:0 auto;padding:35px clamp(22px,5vw,60px) 27px;display:flex;flex-direction:column;position:relative}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:20px}
+.brand{display:flex;align-items:center;gap:13px;font-size:22px;font-weight:750;letter-spacing:-.065em}
+.brand-dot{color:var(--teal)}
+.brand-mark{width:32px;height:32px;border-radius:10px;background:#8ce0d3;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2px;transform:rotate(-8deg);box-shadow:0 5px 24px #68dcd551}
+.brand-mark span{display:block;width:18px;height:3px;border-bottom:2px solid #073243;border-radius:50%;transform:rotate(-11deg)}
+.connection{display:flex;align-items:center;gap:9px;border:1px solid #77979d57;border-radius:99px;padding:9px 14px;color:#c8e4e2;background:#16344380;font-size:12px;font-weight:700;letter-spacing:.03em}
+.connection-dot{height:7px;width:7px;border-radius:50%;background:#89aeb5}
+.connection.is-live .connection-dot{background:#bcf39d;box-shadow:0 0 0 4px #a7e58a23,0 0 12px #b6ee9a}
+.connection.is-offline .connection-dot{background:#ffae93;box-shadow:0 0 0 4px #ffae9323}
+main{flex:1;padding-top:clamp(60px,10vh,122px)}
+.eyebrow{display:flex;align-items:center;gap:12px;color:#9ec8c8;font-size:11px;font-weight:800;letter-spacing:.25em}
+.eyebrow-line{width:30px;height:1px;background:#91ddd2}
+h1{font-size:clamp(51px,6vw,83px);line-height:1.01;letter-spacing:-.06em;word-spacing:.1em;font-weight:650;margin:21px 0 17px}
+h1 em{font-family:Georgia,serif;font-weight:400;color:var(--teal);letter-spacing:-.075em}
+.intro p{font-size:15px;color:var(--muted);margin:0}
+.readings{display:grid;grid-template-columns:1.15fr .85fr;gap:19px;margin-top:58px}
+.reading-card{height:300px;border-radius:25px;position:relative;overflow:hidden;padding:29px 33px 25px;display:flex;flex-direction:column;justify-content:space-between;isolation:isolate}
+.pool-card{background:linear-gradient(135deg,#a4e6d7 0%,#67c9c3 52%,#3b9fb0 100%);color:#063947;box-shadow:0 20px 55px #04162144,inset 0 1px #ffffff7d}
+.air-card{background:linear-gradient(137deg,#d9edb5 0%,#c7e0ab 48%,#a9cfb0 100%);color:#254c42;box-shadow:0 20px 55px #04162135,inset 0 1px #ffffffa1}
+.card-content,.card-bottom{position:relative;z-index:1}
+.card-heading{display:flex;align-items:center;gap:10px;font-weight:800;font-size:11px;letter-spacing:.18em}
+.card-icon{height:28px;width:28px;border:1px solid #1755664d;border-radius:9px;display:grid;place-items:center;font-size:21px;font-weight:500;line-height:1}
+.air-icon{font-size:17px;border-color:#42685b5c}
+.temperature{display:flex;align-items:flex-start;font-variant-numeric:tabular-nums;font-size:clamp(88px,11vw,139px);line-height:.95;letter-spacing:-.095em;font-weight:650;margin-top:25px}
+.temperature-unit{font-size:.3em;line-height:1.4;letter-spacing:-.06em;margin:4px 0 0 9px;font-weight:550}
+.card-caption{margin:7px 0 0;font-size:14px;font-weight:500;opacity:.78}
+.card-bottom{display:flex;align-items:center;gap:10px;font-size:10px;font-weight:750;letter-spacing:.16em;opacity:.7}
+.card-bottom-line{width:17px;height:1px;background:currentColor}
+.pool-decoration{position:absolute;right:-92px;top:-83px;width:430px;height:430px;border-radius:50%;opacity:.32}
+.pool-orbit{position:absolute;border:1px solid #e5ffff;border-radius:50%;inset:0}
+.orbit-two{inset:36px}.orbit-three{inset:80px}
+.sun-decoration{position:absolute;right:-15px;top:-47px;width:285px;height:285px;border-radius:50%;border:1px solid #eff8d0aa;opacity:.48}
+.sun-decoration:before,.sun-decoration:after,.sun-decoration span{content:"";position:absolute;border-radius:50%;border:1px solid #eff8d0aa;inset:29px}
+.sun-decoration:after{inset:66px}.sun-decoration span{inset:104px}
+.alert-panel{margin-top:21px;border:1px solid #f4c5aa6b;border-radius:16px;background:#523a3880;padding:17px 19px;display:flex;align-items:flex-start;gap:13px;color:#ffe5d4}
+.alert-panel[hidden]{display:none}
+.alert-symbol{width:23px;height:23px;border-radius:50%;background:#ffd0ad;color:#633b2f;flex:none;display:grid;place-items:center;font-weight:800;font-size:14px}
+.alert-panel strong{font-size:14px}.alert-panel p{font-size:13px;line-height:1.5;margin:5px 0 0;color:#eed6ce}
+.last-updated{display:flex;align-items:center;gap:9px;color:#99b6bb;font-size:12px;margin:26px 0 62px}
+.live-spark{width:5px;height:5px;border-radius:50%;background:#93ded3}
+footer{border-top:1px solid #72939b45;padding-top:21px;display:flex;justify-content:space-between;gap:15px;color:#86a3aa;font-size:10px;font-weight:750;letter-spacing:.14em}
+footer span:last-child{font-weight:500;letter-spacing:.02em}.footer-divider{padding:0 5px;color:#5e868b}
+@media(max-width:700px){.page-shell{padding:24px 22px}.brand{font-size:20px}.brand-mark{width:29px;height:29px}.connection{padding:8px 10px;font-size:11px}main{padding-top:66px}h1{font-size:clamp(51px,12vw,72px)}.readings{grid-template-columns:1fr;margin-top:39px;gap:14px}.reading-card{height:255px;padding:25px 27px 22px}.temperature{font-size:112px;margin-top:17px}.last-updated{margin-bottom:54px}footer{flex-wrap:wrap;line-height:1.6}}
+@media(max-width:390px){.temperature{font-size:95px}.reading-card{height:245px}.connection{font-size:10px}.eyebrow{font-size:9px}}
+@media(prefers-reduced-motion:no-preference){.connection.is-live .connection-dot{animation:pulse 2.5s infinite}@keyframes pulse{50%{box-shadow:0 0 0 6px #a7e58a10,0 0 18px #b6ee9a}}}

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#081c2b">
+  <title>Poolside · ScreenLogic Monitor</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span><span>poolside<span class="brand-dot">.</span></span></div>
+      <div id="connection" class="connection is-connecting" role="status"><span class="connection-dot"></span><span id="connection-text">Connecting</span></div>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <div class="eyebrow"><span class="eyebrow-line"></span> YOUR POOL, AT A GLANCE</div>
+        <h1 id="page-title">A little piece<br>of <em>paradise.</em></h1>
+        <p>Live conditions from your ScreenLogic system.</p>
+      </section>
+
+      <section class="readings" aria-label="Current temperatures">
+        <article class="reading-card pool-card">
+          <div class="pool-decoration" aria-hidden="true"><div class="pool-orbit orbit-one"></div><div class="pool-orbit orbit-two"></div><div class="pool-orbit orbit-three"></div></div>
+          <div class="card-content">
+            <div class="card-heading"><span class="card-icon pool-icon" aria-hidden="true">≈</span><span>POOL WATER</span></div>
+            <div class="temperature"><span id="pool-temp">--</span><span class="temperature-unit">°<span id="pool-unit">F</span></span></div>
+            <p class="card-caption">Ready when you are.</p>
+          </div>
+          <div class="card-bottom"><span class="card-bottom-line"></span><span>WATER TEMPERATURE</span></div>
+        </article>
+
+        <article class="reading-card air-card">
+          <div class="sun-decoration" aria-hidden="true"><span></span></div>
+          <div class="card-content">
+            <div class="card-heading"><span class="card-icon air-icon" aria-hidden="true">✳</span><span>OUTSIDE</span></div>
+            <div class="temperature"><span id="air-temp">--</span><span class="temperature-unit">°<span id="air-unit">F</span></span></div>
+            <p class="card-caption">Fresh air, good days.</p>
+          </div>
+          <div class="card-bottom"><span class="card-bottom-line"></span><span>AIR TEMPERATURE</span></div>
+        </article>
+      </section>
+
+      <section id="alert-panel" class="alert-panel" aria-live="polite" hidden>
+        <div class="alert-symbol" aria-hidden="true">!</div>
+        <div><strong id="alert-title">System notice</strong><p id="alert-message"></p></div>
+      </section>
+
+      <div class="last-updated"><span class="live-spark" aria-hidden="true"></span><span id="updated-text">Waiting for first reading…</span></div>
+    </main>
+
+    <footer><span>POOLside <span class="footer-divider">/</span> SCREENLOGIC MONITOR</span><span>Read only. Made for peace of mind.</span></footer>
+  </div>
+</body>
+</html>

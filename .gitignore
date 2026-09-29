@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.env
+diagnostics*.json
+.monitor-state.json
+.monitor-state.json.tmp
+*.log
