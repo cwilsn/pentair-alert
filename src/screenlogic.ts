@@ -1,5 +1,10 @@
-import { FindUnits, UnitConnection, type SLEquipmentStateData } from 'node-screenlogic';
+import { EquipmentStateMessage, FindUnits, UnitConnection, type SLEquipmentStateData } from 'node-screenlogic';
 import type { DiagnosticConfig } from './config.js';
+
+export interface EquipmentSnapshot {
+  state: SLEquipmentStateData;
+  rawResponseHex: string | null;
+}
 
 function timed<T>(operation: Promise<T>, ms: number, label: string): Promise<T> {
   return new Promise((resolve, reject) => {
@@ -11,7 +16,7 @@ function timed<T>(operation: Promise<T>, ms: number, label: string): Promise<T> 
   });
 }
 
-export async function readEquipmentState(config: DiagnosticConfig): Promise<SLEquipmentStateData> {
+export async function readEquipmentState(config: DiagnosticConfig): Promise<EquipmentSnapshot> {
   let address = config.host;
   let port = config.port;
   let name = config.systemName;
@@ -35,9 +40,18 @@ export async function readEquipmentState(config: DiagnosticConfig): Promise<SLEq
   const client = new UnitConnection();
   client.netTimeout = config.requestTimeoutMs;
   client.init(name, address, port!, config.password);
+  let rawResponseHex: string | null = null;
+  const handleMessage = client.onClientMessage.bind(client);
+  client.onClientMessage = message => {
+    if (message.action === EquipmentStateMessage.ResponseIDs.EquipmentState) {
+      rawResponseHex = message.toBuffer().toString('hex');
+    }
+    handleMessage(message);
+  };
   try {
     await timed(client.connectAsync(), config.requestTimeoutMs * 2, 'connection');
-    return await timed(client.equipment.getEquipmentStateAsync(), config.requestTimeoutMs * 2, 'equipment state');
+    const state = await timed(client.equipment.getEquipmentStateAsync(), config.requestTimeoutMs * 2, 'equipment state');
+    return { state, rawResponseHex };
   } finally {
     await client.closeAsync();
   }

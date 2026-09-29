@@ -3,6 +3,7 @@ const elements = {
   connectionText: document.getElementById('connection-text'),
   pool: document.getElementById('pool-temp'),
   air: document.getElementById('air-temp'),
+  salt: document.getElementById('salt-ppm'),
   poolUnit: document.getElementById('pool-unit'),
   airUnit: document.getElementById('air-unit'),
   updated: document.getElementById('updated-text'),
@@ -22,6 +23,9 @@ function render(data) {
   elements.connectionText.textContent = connecting ? 'Connecting' : live ? 'System online' : 'System offline';
   showTemperature(elements.pool, data.temperatures?.pool);
   showTemperature(elements.air, data.temperatures?.air);
+  elements.salt.textContent = typeof data.saltPpm === 'number' && Number.isFinite(data.saltPpm)
+    ? Math.round(data.saltPpm).toLocaleString()
+    : '--';
   elements.poolUnit.textContent = data.temperatures?.unit || 'F';
   elements.airUnit.textContent = data.temperatures?.unit || 'F';
 

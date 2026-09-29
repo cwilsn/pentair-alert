@@ -22,6 +22,11 @@ h1 em{font-family:Georgia,serif;font-weight:400;color:var(--teal);letter-spacing
 .reading-card{height:300px;border-radius:25px;position:relative;overflow:hidden;padding:29px 33px 25px;display:flex;flex-direction:column;justify-content:space-between;isolation:isolate}
 .pool-card{background:linear-gradient(135deg,#a4e6d7 0%,#67c9c3 52%,#3b9fb0 100%);color:#063947;box-shadow:0 20px 55px #04162144,inset 0 1px #ffffff7d}
 .air-card{background:linear-gradient(137deg,#d9edb5 0%,#c7e0ab 48%,#a9cfb0 100%);color:#254c42;box-shadow:0 20px 55px #04162135,inset 0 1px #ffffffa1}
+.salt-card{min-height:122px;margin-top:19px;padding:24px 33px;border:1px solid #8fcac650;border-radius:22px;background:linear-gradient(110deg,#143747,#1a4050);box-shadow:0 18px 45px #04162127,inset 0 1px #ffffff18;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.salt-heading{display:flex;align-items:center;gap:12px;color:#b8d9d7;font-size:11px;font-weight:800;letter-spacing:.18em}
+.salt-icon{width:34px;height:34px;border:1px solid #9ddbd577;border-radius:10px;display:grid;place-items:center;color:var(--teal);font-size:23px;font-weight:300;line-height:1}
+.salt-value{display:flex;align-items:baseline;gap:10px;color:var(--ink);font-size:clamp(46px,5vw,64px);font-weight:650;letter-spacing:-.07em;font-variant-numeric:tabular-nums;line-height:1}
+.salt-unit{color:#9ec8c8;font-size:15px;font-weight:700;letter-spacing:0}
 .card-content,.card-bottom{position:relative;z-index:1}
 .card-heading{display:flex;align-items:center;gap:10px;font-weight:800;font-size:11px;letter-spacing:.18em}
 .card-icon{height:28px;width:28px;border:1px solid #1755664d;border-radius:9px;display:grid;place-items:center;font-size:21px;font-weight:500;line-height:1}
@@ -45,6 +50,6 @@ h1 em{font-family:Georgia,serif;font-weight:400;color:var(--teal);letter-spacing
 .live-spark{width:5px;height:5px;border-radius:50%;background:#93ded3}
 footer{border-top:1px solid #72939b45;padding-top:21px;display:flex;justify-content:space-between;gap:15px;color:#86a3aa;font-size:10px;font-weight:750;letter-spacing:.14em}
 footer span:last-child{font-weight:500;letter-spacing:.02em}.footer-divider{padding:0 5px;color:#5e868b}
-@media(max-width:700px){.page-shell{padding:24px 22px}.brand{font-size:20px}.brand-mark{width:29px;height:29px}.connection{padding:8px 10px;font-size:11px}main{padding-top:66px}h1{font-size:clamp(51px,12vw,72px)}.readings{grid-template-columns:1fr;margin-top:39px;gap:14px}.reading-card{height:255px;padding:25px 27px 22px}.temperature{font-size:112px;margin-top:17px}.last-updated{margin-bottom:54px}footer{flex-wrap:wrap;line-height:1.6}}
+@media(max-width:700px){.page-shell{padding:24px 22px}.brand{font-size:20px}.brand-mark{width:29px;height:29px}.connection{padding:8px 10px;font-size:11px}main{padding-top:66px}h1{font-size:clamp(51px,12vw,72px)}.readings{grid-template-columns:1fr;margin-top:39px;gap:14px}.reading-card{height:255px;padding:25px 27px 22px}.temperature{font-size:112px;margin-top:17px}.salt-card{margin-top:14px;padding:22px 27px;align-items:flex-start;flex-direction:column;gap:14px}.salt-value{font-size:52px}.last-updated{margin-bottom:54px}footer{flex-wrap:wrap;line-height:1.6}}
 @media(max-width:390px){.temperature{font-size:95px}.reading-card{height:245px}.connection{font-size:10px}.eyebrow{font-size:9px}}
 @media(prefers-reduced-motion:no-preference){.connection.is-live .connection-dot{animation:pulse 2.5s infinite}@keyframes pulse{50%{box-shadow:0 0 0 6px #a7e58a10,0 0 18px #b6ee9a}}}

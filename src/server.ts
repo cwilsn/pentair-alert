@@ -1,5 +1,5 @@
 import { existsSync } from 'node:fs';
-import { readFile, rename, writeFile } from 'node:fs/promises';
+import { appendFile, readFile, rename, writeFile } from 'node:fs/promises';
 import { createServer, type ServerResponse } from 'node:http';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -27,6 +27,7 @@ const settings = {
   offlineMinutes: positiveInteger('ALERT_OFFLINE_MINUTES', 5, 1440),
 };
 const stateFile = resolve(process.env.MONITOR_STATE_FILE?.trim() || '.monitor-state.json');
+const alarmEventsFile = resolve('.alarm-events.jsonl');
 const appToken = process.env.PUSHOVER_APP_TOKEN?.trim();
 const userKey = process.env.PUSHOVER_USER_KEY?.trim();
 if (Boolean(appToken) !== Boolean(userKey)) throw new Error('Set both PUSHOVER_APP_TOKEN and PUSHOVER_USER_KEY');
@@ -55,9 +56,23 @@ async function saveAlerts(): Promise<void> {
 }
 
 async function poll(): Promise<void> {
+  const previousAlarmCount = status.alarmCount;
   try {
-    const reading = await readEquipmentState(screenlogic);
-    status = updateStatus(status, reading, new Date());
+    const snapshot = await readEquipmentState(screenlogic);
+    status = updateStatus(status, snapshot.state, new Date());
+    const alarmCount = snapshot.state.alarms;
+    if (alarmCount !== previousAlarmCount && (alarmCount > 0 || (previousAlarmCount ?? 0) > 0)) {
+      try {
+        await appendFile(alarmEventsFile, JSON.stringify({
+          observedAt: status.checkedAt,
+          alarmCount,
+          decodedEquipmentState: snapshot.state,
+          rawEquipmentResponseHex: snapshot.rawResponseHex,
+        }) + '\n', { mode: 0o600 });
+      } catch (error) {
+        console.error('Could not save alarm evidence:', error);
+      }
+    }
   } catch (error) {
     console.error(`[${new Date().toISOString()}] ScreenLogic read failed:`, error);
     status = updateStatus(status, null, new Date());

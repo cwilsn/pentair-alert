@@ -11,6 +11,7 @@ export interface MonitorStatus {
   connected: boolean;
   checkedAt: string | null;
   temperatures: TemperatureSnapshot;
+  saltPpm: number | null;
   alarmCount: number | null;
   delays: { pool: boolean; spa: boolean; cleaner: boolean } | null;
   alerts: AlertRecord[];
@@ -37,6 +38,7 @@ export function initialStatus(): MonitorStatus {
     connected: false,
     checkedAt: null,
     temperatures: { air: null, pool: null, unit: 'F', updatedAt: null },
+    saltPpm: null,
     alarmCount: null,
     delays: null,
     alerts: [],
@@ -56,6 +58,7 @@ export function updateStatus(previous: MonitorStatus, reading: SLEquipmentStateD
       unit: 'F',
       updatedAt: checkedAt,
     },
+    saltPpm: Number.isFinite(reading.saltPPM) && reading.saltPPM >= 0 ? reading.saltPPM : null,
     alarmCount: reading.alarms,
     delays: {
       pool: reading.poolDelay !== 0,
@@ -87,7 +90,7 @@ export function reconcileAlerts(
       conditions.push({
         id: 'controller-alarm',
         title: 'ScreenLogic system alarm',
-        message: `The controller reports ${count} active alarm${count === 1 ? '' : 's'}. Check the Pentair panel or app for details; ScreenLogic does not expose the alarm text here.`,
+        message: `The controller reports ${count} active alarm${count === 1 ? '' : 's'}. Check the ScreenLogic app or panel for the description; this monitor currently receives only the count.`,
         severity: 'error',
         value: count,
       });

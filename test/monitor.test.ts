@@ -19,10 +19,11 @@ function reading(values: Partial<SLEquipmentStateData> = {}): SLEquipmentStateDa
   } as SLEquipmentStateData;
 }
 
-test('maps air and pool temperature from actual equipment state fields', () => {
-  const status = updateStatus(initialStatus(), reading(), started);
+test('maps temperature and salt level from actual equipment state fields', () => {
+  const status = updateStatus(initialStatus(), reading({ saltPPM: 3200 }), started);
   assert.equal(status.temperatures.air, 72);
   assert.equal(status.temperatures.pool, 81);
+  assert.equal(status.saltPpm, 3200);
   assert.equal(status.temperatures.unit, 'F');
   assert.equal(status.connected, true);
 });
